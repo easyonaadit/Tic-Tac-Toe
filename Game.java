@@ -34,7 +34,7 @@ public class Game {
         setBoard();
     }
 
-    private void setBoard(){
+    private void setBoard() {
         for (int i = 0; i < 9; i++) Board[i] = 0;
     }
 
@@ -54,16 +54,16 @@ public class Game {
         return isAlive;
     }
 
-    public void evaluateBoard(){
+    public void evaluateBoard() {
         //check user win:
-        for (int i = 0; i < 9; i++){
-            if(Board[i] != 1) continue;
-            for (int j = i+1; j < 9; j++){
-                if(Board[j] != 1) continue;
-                for (int k = j+1; k < 9; k++){
-                    if(Board[k] != 1) continue;
-                    if (MagicSquare[i] + MagicSquare[j] + MagicSquare[k] == 15){
-                        System.out.println(i+", "+j+", "+k);
+        for (int i = 0; i < 9; i++) {
+            if (Board[i] != 1) continue;
+            for (int j = i + 1; j < 9; j++) {
+                if (Board[j] != 1) continue;
+                for (int k = j + 1; k < 9; k++) {
+                    if (Board[k] != 1) continue;
+                    if (MagicSquare[i] + MagicSquare[j] + MagicSquare[k] == 15) {
+                        System.out.println(i + ", " + j + ", " + k);
                         setUserWin(true);
                         return;
                     }
@@ -72,13 +72,13 @@ public class Game {
         }
 
         //check comp win:
-        for (int i = 0; i < 9; i++){
-            if(Board[i] != 2) continue;
-            for (int j = i+1; j < 9; j++){
-                if(Board[j] != 2) continue;
-                for (int k = j+1; k < 9; k++){
-                    if(Board[k] != 2) continue;
-                    if (MagicSquare[i] + MagicSquare[j] + MagicSquare[k] == 15){
+        for (int i = 0; i < 9; i++) {
+            if (Board[i] != 2) continue;
+            for (int j = i + 1; j < 9; j++) {
+                if (Board[j] != 2) continue;
+                for (int k = j + 1; k < 9; k++) {
+                    if (Board[k] != 2) continue;
+                    if (MagicSquare[i] + MagicSquare[j] + MagicSquare[k] == 15) {
                         setComputerWin(true);
                         return;
                     }
@@ -86,7 +86,7 @@ public class Game {
             }
         }
 
-        for (int i = 0; i < 9; i++){
+        for (int i = 0; i < 9; i++) {
             if (Board[i] == 0) return;
 
         }
@@ -95,34 +95,32 @@ public class Game {
 
     }
 
-    public void displayBoard(){
+    public void displayBoard() {
         int i = 0;
         int count = 0;
-        while (count < 3){
+        while (count < 3) {
             displayRow(i);
             i += 3;
-            if(count != 2) displayColumn();
+            if (count != 2) displayColumn();
             count++;
-
-
         }
         System.out.println();
     }
 
-    private void displayRow(int i){
-        int j = i+3;
-        if(i != 0) System.out.println();
-        for (; i < j; i++){
-            if(Board[i] == 0){
+    private void displayRow(int i) {
+        int j = i + 3;
+        if (i != 0) System.out.println();
+        for (; i < j; i++) {
+            if (Board[i] == 0) {
                 System.out.print(" ");
             }
-            if(Board[i] == 1){
+            if (Board[i] == 1) {
                 System.out.print(ConsoleColours.RED.getColourCode() + "X" + ConsoleColours.RESET.getColourCode());
             }
-            if(Board[i] == 2){
+            if (Board[i] == 2) {
                 System.out.print(ConsoleColours.BLUE.getColourCode() + "O" + ConsoleColours.RESET.getColourCode());
             }
-            if(i != (j-1)){
+            if (i != (j - 1)) {
                 System.out.print(" | ");
             }
 
@@ -130,19 +128,19 @@ public class Game {
 
     }
 
-    private void displayColumn(){
+    private void displayColumn() {
         System.out.println();
         for (int j = 0; j < 9; j++) System.out.print("-");
     }
 
-    public int possWin(int player){
-        for (int i = 0; i < 9; i++){
+    public int possWin(int player) {
+        for (int i = 0; i < 9; i++) {
             if (Board[i] != player) continue;
-            for (int j = i+1; j < 9; j++){
+            for (int j = i + 1; j < 9; j++) {
                 if (Board[j] != player) continue;
-                for (int k = 0; k < 9; k++){
-                    if(k == i || k == j) continue;
-                    if(Board[k] != 0) continue;
+                for (int k = 0; k < 9; k++) {
+                    if (k == i || k == j) continue;
+                    if (Board[k] != 0) continue;
                     if (MagicSquare[i] + MagicSquare[j] + MagicSquare[k] == 15) return k;
                 }
             }

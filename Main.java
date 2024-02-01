@@ -45,7 +45,6 @@ public class Main {
             }
             System.out.println("Want to play again? (Y/N)");
             char ch = (char) stdin.read();
-            ;
             if (ch == 'n' || ch == 'N') {
                 io.updateScores();
                 break;

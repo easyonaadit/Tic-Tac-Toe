@@ -1,10 +1,8 @@
 public class Computer extends DriverClass {
-    public boolean gameStatus;
-    private int posswin;
     private boolean firstMove = true;
 
     public void playMove(Game game) {
-        posswin = game.possWin(2);  // returns index of winning position if possible, else returns -1;
+        int posswin = game.possWin(2);  // returns index of winning position if possible, else returns -1;
         //posswin returns the linear index, need to convert it into 2-D coordinates
         if (posswin >= 0) {
             //play at that position returend by posswin
@@ -23,7 +21,9 @@ public class Computer extends DriverClass {
         if (firstMove) {
             if (userPlayedCorner(game.Board)) {
                 //play center
-                game.Board[getIndex(1, 1)] = 2;
+                //afterthought: if user plays corner, then we should play in a block adjacent to that, this will prevent the situation where the user can make 2 winning possiblilities.
+                int playerMove = getPlayerCorner(game.Board);
+                game.Board[playerMove] = 2;
                 displayCompMove(game);
             } else {
                 //play corner
@@ -53,13 +53,15 @@ public class Computer extends DriverClass {
                 displayCompMove(game);
             } else {
                 //play random move
-                for (int i = 0; i < 9; i++) {
-                    if (game.Board[i] == 0) {
-                        game.Board[i] = 2;
+                while (true){
+                    int move = (int)(Math.random()*9);
+                    if (game.Board[move] == 0){
+                        game.Board[move] = 2;
                         displayCompMove(game);
                         return;
                     }
                 }
+
             }
         }
     }
@@ -98,5 +100,13 @@ public class Computer extends DriverClass {
             return true;
         } else return false;
 
+    }
+    private int getPlayerCorner(int[] Board){
+        int random = (int)Math.floor(Math.random()*2);
+        if (Board[0] == 1) if (random == 1) return 1; else return 3;
+        if (Board[2] == 1) if (random == 1) return 1; else return 5;
+        if (Board[6] == 1) if (random == 1) return 7; else return 3;
+        if (Board[8] == 1) if (random == 1) return 7; else return 5;
+        return -1;
     }
 }

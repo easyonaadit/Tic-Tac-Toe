@@ -25,7 +25,7 @@ public class Computer extends DriverClass {
                 int playerMove = getPlayerCorner(game.Board);
                 game.Board[playerMove] = 2;
                 displayCompMove(game);
-            } else {
+            } else { 
                 //play corner
                 game.Board[0] = 2;
                 displayCompMove(game);

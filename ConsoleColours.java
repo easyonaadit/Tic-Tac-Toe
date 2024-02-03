@@ -4,6 +4,7 @@ public enum ConsoleColours {
     GREEN("\033[32m"),
     YELLOW("\033[0;33m"),
     CYAN("\033[0;36m"),
+    PURPLE("\033[0;35m"),
     BLUE("\033[34m");
 
     private final String colour;

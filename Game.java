@@ -107,6 +107,18 @@ public class Game {
         System.out.println();
     }
 
+    public void displayBoard(int flag) {
+        int i = 0;
+        int count = 0;
+        while (count < 3) {
+            displayRow(i, flag);
+            i += 3;
+            if (count != 2) displayColumn(flag);
+            count++;
+        }
+        System.out.println();
+    }
+
     private void displayRow(int i) {
         int j = i + 3;
         if (i != 0) System.out.println();
@@ -128,9 +140,35 @@ public class Game {
 
     }
 
+    private void displayRow(int i, int flag) {
+        int j = i + 3;
+        if (i != 0) System.out.println();
+        for (; i < j; i++) {
+            if (Board[i] == 0) {
+                System.out.print(" ");
+            }
+            if (Board[i] == 1) {
+                System.out.print(ConsoleColours.RED.getColourCode() + "X" + ConsoleColours.RESET.getColourCode());
+            }
+            if (Board[i] == 2) {
+                System.out.print(ConsoleColours.CYAN.getColourCode() + "O" + ConsoleColours.RESET.getColourCode());
+            }
+            if (i != (j - 1)) {
+                System.out.print(ConsoleColours.GREEN.getColourCode() + " | " + ConsoleColours.RESET.getColourCode());
+            }
+
+        }
+
+    }
+
     private void displayColumn() {
         System.out.println();
         for (int j = 0; j < 9; j++) System.out.print("-");
+    }
+
+    private void displayColumn(int flag) {
+        System.out.println();
+        for (int j = 0; j < 9; j++) System.out.print(ConsoleColours.GREEN.getColourCode() + "-" + ConsoleColours.RESET.getColourCode());
     }
 
     public int possWin(int player) {

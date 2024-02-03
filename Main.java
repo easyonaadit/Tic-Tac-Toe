@@ -13,14 +13,14 @@ public class Main {
                 game.evaluateBoard();
                 if (game.isUserWin()) {
                     System.out.println(ConsoleColours.YELLOW.getColourCode() + "You Win!" + ConsoleColours.RESET.getColourCode());
-                    game.displayBoard();
+                    game.displayBoard(1);
                     io.setLose();
                     game.setAlive(false);
                     continue;
                 }
                 if (game.isDraw()) {
                     System.out.println(ConsoleColours.YELLOW.getColourCode() + "Draw." + ConsoleColours.RESET.getColourCode());
-                    game.displayBoard();
+                    game.displayBoard(1);
                     io.setDraw();
                     game.setAlive(false);
                     continue;
@@ -30,14 +30,14 @@ public class Main {
                 game.evaluateBoard();
                 if (game.isComputerWin()) {
                     System.out.println(ConsoleColours.YELLOW.getColourCode() + "Computer Wins!" + ConsoleColours.RESET.getColourCode());
-                    game.displayBoard();
+                    game.displayBoard(1);
                     io.setWin();
                     game.setAlive(false);
                     continue;
                 }
                 if (game.isDraw()) {
                     System.out.println(ConsoleColours.YELLOW.getColourCode() + "Draw." + ConsoleColours.RESET.getColourCode());
-                    game.displayBoard();
+                    game.displayBoard(1);
                     io.setDraw();
                     game.setAlive(false);
                     continue;

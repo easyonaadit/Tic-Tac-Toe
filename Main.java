@@ -12,14 +12,14 @@ public class Main {
                 user.playMove(game);
                 game.evaluateBoard();
                 if (game.isUserWin()) {
-                    System.out.println(ConsoleColours.YELLOW.getColourCode() + "You Win!" + ConsoleColours.RESET.getColourCode());
+                    printMessage("You Win!");
                     game.displayBoard(1);
                     io.setLose();
                     game.setAlive(false);
                     continue;
                 }
                 if (game.isDraw()) {
-                    System.out.println(ConsoleColours.YELLOW.getColourCode() + "Draw." + ConsoleColours.RESET.getColourCode());
+                    printMessage("Draw.");
                     game.displayBoard(1);
                     io.setDraw();
                     game.setAlive(false);
@@ -29,14 +29,14 @@ public class Main {
                 computer.playMove(game);
                 game.evaluateBoard();
                 if (game.isComputerWin()) {
-                    System.out.println(ConsoleColours.YELLOW.getColourCode() + "Computer Wins!" + ConsoleColours.RESET.getColourCode());
+                    printMessage("Computer Wins!");
                     game.displayBoard(1);
                     io.setWin();
                     game.setAlive(false);
                     continue;
                 }
                 if (game.isDraw()) {
-                    System.out.println(ConsoleColours.YELLOW.getColourCode() + "Draw." + ConsoleColours.RESET.getColourCode());
+                    printMessage("Draw.");
                     game.displayBoard(1);
                     io.setDraw();
                     game.setAlive(false);
@@ -49,7 +49,14 @@ public class Main {
                 io.updateScores();
                 break;
             }
+            System.gc();
 
         } while (true);
     }
+
+    public static void printMessage(String s){
+        System.out.println(ConsoleColours.YELLOW.getColourCode() + s + ConsoleColours.RESET.getColourCode());
+    }
+
+
 }
